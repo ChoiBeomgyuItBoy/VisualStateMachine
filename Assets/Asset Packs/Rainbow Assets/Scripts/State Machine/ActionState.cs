@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace RainbowAssets.StateMachine
 {
-    [CreateAssetMenu(menuName = "New Action State")]
     public class ActionState : State
     {
         [SerializeField] ActionData[] actionsData;

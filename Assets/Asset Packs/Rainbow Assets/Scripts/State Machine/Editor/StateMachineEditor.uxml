@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Asset%20Packs/Rainbow%20Assets/Scripts/State%20Machine/Editor/StateMachineEditor.uss?fileID=7433441132597879392&amp;guid=34fde6ddf3e83904480eea0daeba2223&amp;type=3#StateMachineEditor" />
+    <RainbowAssets.StateMachine.Editor.StateMachineView focusable="false" style="flex-grow: 1;" />
+</ui:UXML>
