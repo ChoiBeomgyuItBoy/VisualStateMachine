@@ -1,8 +1,8 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
-using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 
 namespace RainbowAssets.StateMachine.Editor
 {
@@ -38,6 +38,14 @@ namespace RainbowAssets.StateMachine.Editor
         }
 
         void SetTitle()
+        {
+            if(state is ActionState)
+            {
+                BindTitle();
+            }
+        }
+
+        void BindTitle()
         {
             Label titleLabel = this.Q<Label>("title-label");
             titleLabel.bindingPath = "title";

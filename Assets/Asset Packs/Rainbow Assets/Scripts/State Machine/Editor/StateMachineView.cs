@@ -14,7 +14,7 @@ namespace RainbowAssets.StateMachine.Editor
         {
             StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(StateMachineEditor.path + "StateMachineEditor.uss");
             styleSheets.Add(styleSheet);
-            
+
             Insert(0, new GridBackground());
 
             this.AddManipulator(new ContentZoomer());
@@ -46,7 +46,12 @@ namespace RainbowAssets.StateMachine.Editor
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
             base.BuildContextualMenu(evt);
-            evt.menu.AppendAction("Create State", a => CreateState(typeof(ActionState)));
+
+            foreach(var stateType in TypeCache.GetTypesDerivedFrom<State>())
+            {
+                evt.menu.AppendAction($"Create State/{stateType.Name}", a => CreateState(stateType));
+            }
+
         }
 
         void CreateStateView(State state)

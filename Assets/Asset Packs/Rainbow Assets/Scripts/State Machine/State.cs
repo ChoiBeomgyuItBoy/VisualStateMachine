@@ -26,6 +26,11 @@ namespace RainbowAssets.StateMachine
             return position;
         }
 
+        public void SetTitle(string title)
+        {
+            this.title = title;
+        }
+
 #if UNITY_EDITOR
         public void SetPosition(Vector2 position)
         {
