@@ -1,10 +1,12 @@
+using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace RainbowAssets.StateMachine
 {
     [CreateAssetMenu(menuName = "New State Machine")]
-    public class StateMachine : ScriptableObject
+    public class StateMachine : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] string entryStateID;
         [SerializeField] List<State> states = new();
@@ -17,6 +19,11 @@ namespace RainbowAssets.StateMachine
             {
                 state.Bind(controller);
             }
+        }
+
+        public IEnumerable<State> GetStates()
+        {
+            return states;
         }
 
         public State GetState(string stateID)
@@ -45,6 +52,46 @@ namespace RainbowAssets.StateMachine
             currentState = GetState(newStateID);
             currentState.Enter();
         }
+
+#if UNITY_EDITOR
+        public State CreateState(Type type)
+        {
+            State newState = CreateInstance(type) as State;
+            newState.name = Guid.NewGuid().ToString();
+
+            Undo.RegisterCreatedObjectUndo(newState, "State Created");
+            Undo.RecordObject(this, "State Added");
+
+            states.Add(newState);
+            OnValidate();
+            
+            return newState;
+        }
+
+        public void RemoveState(State stateToRemove)
+        {
+            Undo.RecordObject(this, "State Removed");
+            states.Remove(stateToRemove);
+            OnValidate();
+            Undo.DestroyObjectImmediate(stateToRemove);
+        }
+
+        void ISerializationCallbackReceiver.OnBeforeSerialize()
+        {
+            if(AssetDatabase.GetAssetPath(this) != "")
+            {
+                foreach(var state in states)
+                {
+                    if(AssetDatabase.GetAssetPath(state) == "")
+                    {
+                        AssetDatabase.AddObjectToAsset(state, this);
+                    }
+                }
+            }
+        }
+
+        void ISerializationCallbackReceiver.OnAfterDeserialize() { }  
+#endif
         
         void OnEnable()
         {

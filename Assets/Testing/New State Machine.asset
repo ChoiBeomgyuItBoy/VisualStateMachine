@@ -13,4 +13,55 @@ MonoBehaviour:
   m_Name: New State Machine
   m_EditorClassIdentifier: 
   entryStateID: 
-  states: []
+  states:
+  - {fileID: 6337351459072804133}
+  - {fileID: 557031802475498751}
+  - {fileID: 7134382761513412172}
+--- !u!114 &557031802475498751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
+  m_Name: e600280c-4855-4278-b7a3-383b4711a9fb
+  m_EditorClassIdentifier: 
+  title: Attack State
+  position: {x: 345, y: 417}
+  transitions: []
+  actionsData: []
+--- !u!114 &6337351459072804133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
+  m_Name: 5237ebdb-fde8-4cf6-9c40-23d57ae39f1f
+  m_EditorClassIdentifier: 
+  title: Idle State
+  position: {x: 588.1646, y: 627.2593}
+  transitions: []
+  actionsData: []
+--- !u!114 &7134382761513412172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
+  m_Name: 7cc9f8b2-9596-4419-bc3d-bf203629ddc7
+  m_EditorClassIdentifier: 
+  title: Jump State
+  position: {x: 151.61504, y: 523.645}
+  transitions: []
+  actionsData: []

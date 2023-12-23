@@ -4,3 +4,7 @@ GridBackground {
     --thick-line-color: rgba(193, 196, 192, 0.1);
     --spacing: 15;
 }
+
+.actionState {
+    background-color: rgb(79, 75, 75);
+}
