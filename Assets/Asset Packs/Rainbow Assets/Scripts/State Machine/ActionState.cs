@@ -7,15 +7,6 @@ namespace RainbowAssets.StateMachine
     {
         [SerializeField] ActionData[] actionsData;
 
-        protected override void OnEnter() { }
-
-        protected override void OnTick()
-        {
-            DoActions();
-        }
-
-        protected override void OnExit() { }
-
         [System.Serializable]
         class ActionData
         {
@@ -32,6 +23,11 @@ namespace RainbowAssets.StateMachine
                     action.DoAction(actionData.actionID, actionData.parameters);
                 }
             }
+        }
+
+        protected override void OnTick()
+        {
+            DoActions();
         }
     }
 }

@@ -21,11 +21,6 @@ namespace RainbowAssets.StateMachine
             }
         }
 
-        public IEnumerable<State> GetStates()
-        {
-            return states;
-        }
-
         public State GetState(string stateID)
         {
             if(!stateLookup.ContainsKey(stateID))
@@ -34,6 +29,11 @@ namespace RainbowAssets.StateMachine
             }
 
             return stateLookup[stateID];
+        }
+
+        public IEnumerable<State> GetStates()
+        {
+            return states;
         }
 
         public void Enter()
@@ -48,9 +48,7 @@ namespace RainbowAssets.StateMachine
 
         public void SwitchState(string newStateID)
         {
-            currentState?.Exit();
             currentState = GetState(newStateID);
-            currentState.Enter();
         }
 
 #if UNITY_EDITOR

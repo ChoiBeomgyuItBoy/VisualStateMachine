@@ -9,6 +9,7 @@ namespace RainbowAssets.StateMachine
         [SerializeField] string title = "New State";
         [SerializeField] Vector2 position;
         [SerializeField] List<Transition> transitions = new();
+        Dictionary<string, Transition> transitionLookup = new();
         protected StateMachineController controller;
 
         public void Bind(StateMachineController controller)
@@ -26,9 +27,9 @@ namespace RainbowAssets.StateMachine
             return position;
         }
 
-        public void SetTitle(string title)
+        public IEnumerable<Transition> GetTransitions()
         {
-            this.title = title;
+            return transitions;
         }
 
 #if UNITY_EDITOR
@@ -38,12 +39,23 @@ namespace RainbowAssets.StateMachine
             this.position = position;
             EditorUtility.SetDirty(this);
         }
-#endif
 
-        public void Enter()
+        public void AddTransition(string trueStateID)
         {
-            OnEnter();
+            Undo.RecordObject(this, "Transition Added");
+            transitions.Add(new Transition(name, trueStateID));
+            OnValidate();
+            EditorUtility.SetDirty(this);
         }
+
+        public void RemoveTransition(string trueStateID)
+        {
+            Undo.RecordObject(this, "Transition Removed");
+            transitions.Remove(GetTransition(trueStateID));
+            OnValidate();
+            EditorUtility.SetDirty(this);
+        }
+#endif
 
         public void Tick()
         {
@@ -51,9 +63,32 @@ namespace RainbowAssets.StateMachine
             OnTick();
         }
 
-        public void Exit()
+        void Awake()
         {
-            OnExit();
+            OnValidate();
+        }
+
+        void OnValidate()
+        {
+            transitionLookup.Clear();
+
+            foreach(var transition in transitions)
+            {
+                if(transition != null)
+                {
+                    transitionLookup[transition.GetTrueStateID()] = transition;
+                }
+            }
+        }
+
+        Transition GetTransition(string trueStateID)
+        {
+            if(!transitionLookup.ContainsKey(trueStateID))
+            {
+                return null;
+            }
+
+            return transitionLookup[trueStateID];
         }
 
         void CheckTransitions()
@@ -71,8 +106,6 @@ namespace RainbowAssets.StateMachine
             }
         }
 
-        protected abstract void OnEnter();
         protected abstract void OnTick();
-        protected abstract void OnExit();
     }
 }

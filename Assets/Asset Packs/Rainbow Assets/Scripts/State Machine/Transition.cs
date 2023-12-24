@@ -11,6 +11,12 @@ namespace RainbowAssets.StateMachine
         [SerializeField] Condition condition;
         StateMachineController controller;
 
+        public Transition(string rootStateID, string trueStateID)
+        {
+            this.rootStateID = rootStateID;
+            this.trueStateID = trueStateID;
+        }
+
         public void Bind(StateMachineController controller)
         {
             this.controller = controller;

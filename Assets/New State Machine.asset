@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3797657414633315303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
+  m_Name: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
+  m_EditorClassIdentifier: 
+  title: New State
+  position: {x: 621, y: 429}
+  transitions:
+  - rootStateID: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
+    trueStateID: 23651de9-6b3f-4833-936f-730b80e7cfda
+    condition:
+      and: []
+  - rootStateID: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
+    trueStateID: 16dc6ec9-9445-4543-ad94-f91d64187f82
+    condition:
+      and: []
+  actionsData: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aedaed16a35737344b2389cf12928266, type: 3}
+  m_Name: New State Machine
+  m_EditorClassIdentifier: 
+  entryStateID: 
+  states:
+  - {fileID: 3934288551766020266}
+  - {fileID: 1260634099074514158}
+  - {fileID: -3797657414633315303}
+--- !u!114 &1260634099074514158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
+  m_Name: 16dc6ec9-9445-4543-ad94-f91d64187f82
+  m_EditorClassIdentifier: 
+  title: New State
+  position: {x: 259, y: 433}
+  transitions:
+  - rootStateID: 16dc6ec9-9445-4543-ad94-f91d64187f82
+    trueStateID: 23651de9-6b3f-4833-936f-730b80e7cfda
+    condition:
+      and: []
+  - rootStateID: 16dc6ec9-9445-4543-ad94-f91d64187f82
+    trueStateID: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
+    condition:
+      and: []
+  actionsData: []
+--- !u!114 &3934288551766020266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
+  m_Name: 23651de9-6b3f-4833-936f-730b80e7cfda
+  m_EditorClassIdentifier: 
+  title: New State
+  position: {x: 429, y: 295}
+  transitions:
+  - rootStateID: 23651de9-6b3f-4833-936f-730b80e7cfda
+    trueStateID: 16dc6ec9-9445-4543-ad94-f91d64187f82
+    condition:
+      and: []
+  - rootStateID: 23651de9-6b3f-4833-936f-730b80e7cfda
+    trueStateID: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
+    condition:
+      and: []
+  actionsData: []

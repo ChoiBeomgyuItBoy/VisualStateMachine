@@ -2,6 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.Experimental.GraphView;
+using System.Collections.Generic;
 
 namespace RainbowAssets.StateMachine.Editor
 {
@@ -40,18 +41,56 @@ namespace RainbowAssets.StateMachine.Editor
                 {
                     CreateStateView(state);
                 }
+
+                foreach(var state in stateMachine.GetStates())
+                {
+                    foreach(var transition in state.GetTransitions())
+                    {
+                        CreateTransitionEdge(transition);
+                    }
+                }
             }
         }
 
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
             base.BuildContextualMenu(evt);
+            evt.menu.AppendAction($"Create State", a => CreateState(typeof(ActionState)));
+        }
 
-            foreach(var stateType in TypeCache.GetTypesDerivedFrom<State>())
+        public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
+        {
+            var compatiblePorts = new List<Port>();
+
+            foreach(var endPort in ports)
             {
-                evt.menu.AppendAction($"Create State/{stateType.Name}", a => CreateState(stateType));
+                if(endPort.direction == startPort.direction)
+                {
+                    continue;
+                }
+
+                if(AreConnected(startPort, endPort))
+                {
+                    continue;
+                }
+
+                compatiblePorts.Add(endPort);
             }
 
+            return compatiblePorts;
+        }
+
+        bool AreConnected(Port startPort, Port endPort)
+        {
+            foreach(var connection in startPort.connections)
+            {
+                if(connection.input == endPort || connection.output == endPort)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         void CreateStateView(State state)
@@ -66,8 +105,47 @@ namespace RainbowAssets.StateMachine.Editor
             CreateStateView(newState);
         }
 
+        void RemoveState(StateView stateView)
+        {
+            stateMachine.RemoveState(stateView.GetState());
+        }
+
+        StateView GetStateView(string stateID)
+        {
+            return GetNodeByGuid(stateID) as StateView;
+        }
+
+        void CreateTransitionEdge(Transition transition)
+        {
+            StateView rootStateView = GetStateView(transition.GetRootStateID());
+            StateView trueStateView = GetStateView(transition.GetTrueStateID());
+            AddElement(rootStateView.ConnectTo(trueStateView));
+        }
+
+        void CreateTransition(TransitionEdge edge)
+        {
+            State rootState = stateMachine.GetState(edge.output.node.viewDataKey);
+            rootState.AddTransition(edge.input.node.viewDataKey);
+        }
+
+        void RemoveTransition(TransitionEdge edge)
+        {
+            State rootState = stateMachine.GetState(edge.output.node.viewDataKey);
+            rootState.RemoveTransition(edge.input.node.viewDataKey);
+        }
+
         GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
         {
+            var edgesToCreate = graphViewChange.edgesToCreate;
+
+            if(edgesToCreate != null)
+            {
+                foreach(var edge in edgesToCreate)
+                {
+                    CreateTransition(edge as TransitionEdge);
+                }
+            }
+
             var elementsToRemove = graphViewChange.elementsToRemove;
 
             if(elementsToRemove != null)
@@ -78,7 +156,14 @@ namespace RainbowAssets.StateMachine.Editor
 
                     if(stateView != null)
                     {
-                        stateMachine.RemoveState(stateView.GetState());
+                        RemoveState(stateView);
+                    }
+
+                    TransitionEdge transitionEdge = element as TransitionEdge;
+
+                    if(transitionEdge != null)
+                    {
+                        RemoveTransition(transitionEdge);
                     }
                 }
             }
