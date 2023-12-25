@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
   m_EditorClassIdentifier: 
   title: New State
-  position: {x: 621, y: 429}
+  position: {x: 727, y: 639}
   transitions:
   - rootStateID: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
     trueStateID: 23651de9-6b3f-4833-936f-730b80e7cfda
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: 16dc6ec9-9445-4543-ad94-f91d64187f82
   m_EditorClassIdentifier: 
   title: New State
-  position: {x: 259, y: 433}
+  position: {x: 421, y: 687}
   transitions:
   - rootStateID: 16dc6ec9-9445-4543-ad94-f91d64187f82
     trueStateID: 23651de9-6b3f-4833-936f-730b80e7cfda
@@ -78,14 +78,14 @@ MonoBehaviour:
   m_Name: 23651de9-6b3f-4833-936f-730b80e7cfda
   m_EditorClassIdentifier: 
   title: New State
-  position: {x: 429, y: 295}
+  position: {x: 537, y: 502}
   transitions:
   - rootStateID: 23651de9-6b3f-4833-936f-730b80e7cfda
-    trueStateID: 16dc6ec9-9445-4543-ad94-f91d64187f82
+    trueStateID: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
     condition:
       and: []
   - rootStateID: 23651de9-6b3f-4833-936f-730b80e7cfda
-    trueStateID: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
+    trueStateID: 16dc6ec9-9445-4543-ad94-f91d64187f82
     condition:
       and: []
   actionsData: []
