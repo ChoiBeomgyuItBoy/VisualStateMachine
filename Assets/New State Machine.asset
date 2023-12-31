@@ -1,49 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8678554540700644078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ddedce7bbba8c408e2c6e1570cd3d5, type: 3}
-  m_Name: 6175f071-f17f-4b58-a682-640fa57fef28
-  m_EditorClassIdentifier: 
-  title: New State
-  position: {x: 334, y: 927}
-  transitions:
-  - rootStateID: 6175f071-f17f-4b58-a682-640fa57fef28
-    trueStateID: c079c8f1-aa96-4770-b0fd-7d5a6947eb66
-    condition:
-      and:
-      - or:
-        - predicate: Pressed Input
-          parameters:
-          - Space
-          negate: 0
---- !u!114 &-6383429489883230733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
-  m_Name: c079c8f1-aa96-4770-b0fd-7d5a6947eb66
-  m_EditorClassIdentifier: 
-  title: B State
-  position: {x: 366, y: 763}
-  transitions: []
-  actionsData:
-  - actionID: Print Message
-    parameters:
-    - B
---- !u!114 &-4442028938592996253
+--- !u!114 &-5005604443841291958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -53,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 248a74bd55c629a458261d2d8fe3a225, type: 3}
-  m_Name: 6a4a1f78-1a12-4e91-95c8-46590c7fc345
+  m_Name: cf8472a2-2e21-4f2d-bb26-1a08e5b55303
   m_EditorClassIdentifier: 
   title: New State
-  position: {x: 6, y: 910}
+  position: {x: 256, y: 12}
   transitions:
-  - rootStateID: 6a4a1f78-1a12-4e91-95c8-46590c7fc345
-    trueStateID: 9bb04829-842d-4204-9fe6-8b7a5625a803
+  - rootStateID: cf8472a2-2e21-4f2d-bb26-1a08e5b55303
+    trueStateID: 8a684c6a-94ea-46a9-89b2-fec5efa4f28a
     condition:
       and: []
 --- !u!114 &11400000
@@ -74,14 +31,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedaed16a35737344b2389cf12928266, type: 3}
   m_Name: New State Machine
   m_EditorClassIdentifier: 
-  entryState: {fileID: -4442028938592996253}
-  anyState: {fileID: -8678554540700644078}
+  entryState: {fileID: -5005604443841291958}
+  anyState: {fileID: 7415388499335281646}
   states:
-  - {fileID: -4442028938592996253}
-  - {fileID: -8678554540700644078}
-  - {fileID: 6816440211567136499}
-  - {fileID: -6383429489883230733}
---- !u!114 &6816440211567136499
+  - {fileID: -5005604443841291958}
+  - {fileID: 7415388499335281646}
+  - {fileID: 7915959696955513780}
+  - {fileID: 2612856674055851126}
+--- !u!114 &2612856674055851126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,9 +48,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
-  m_Name: 9bb04829-842d-4204-9fe6-8b7a5625a803
+  m_Name: 87503766-e5f9-48fd-a211-58c23c16b659
   m_EditorClassIdentifier: 
-  title: A State
-  position: {x: -16, y: 783}
+  title: New State
+  position: {x: 274, y: -239}
   transitions: []
+  actionsData: []
+--- !u!114 &7415388499335281646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ddedce7bbba8c408e2c6e1570cd3d5, type: 3}
+  m_Name: aedfbc7e-bfe5-4108-ba69-4b7e8c440677
+  m_EditorClassIdentifier: 
+  title: New State
+  position: {x: 264, y: 91}
+  transitions: []
+--- !u!114 &7915959696955513780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
+  m_Name: 8a684c6a-94ea-46a9-89b2-fec5efa4f28a
+  m_EditorClassIdentifier: 
+  title: New State
+  position: {x: 207, y: -129}
+  transitions:
+  - rootStateID: 8a684c6a-94ea-46a9-89b2-fec5efa4f28a
+    trueStateID: 87503766-e5f9-48fd-a211-58c23c16b659
+    condition:
+      and: []
   actionsData: []

@@ -19,7 +19,7 @@ Port > Label {
 }
 
 .entryState {
-    background-color: rgb(17, 107, 46);
+    background-color: rgb(21, 110, 48);
     width: 180px;
     height: 40px;
 }
@@ -31,7 +31,7 @@ Port > Label {
 }
 
 .anyState {
-    background-color: rgb(82, 144, 129);
+    background-color: rgb(209, 123, 96);
     width: 180px;
     height: 40px;
 }

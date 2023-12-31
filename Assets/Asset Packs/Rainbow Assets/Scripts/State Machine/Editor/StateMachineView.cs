@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.Experimental.GraphView;
@@ -55,7 +56,8 @@ namespace RainbowAssets.StateMachine.Editor
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
             base.BuildContextualMenu(evt);
-            evt.menu.AppendAction($"Create State", a => CreateState(typeof(ActionState)));
+            Vector2 mousePosition = viewTransform.matrix.inverse.MultiplyPoint(evt.localMousePosition);
+            evt.menu.AppendAction($"Create State", a => CreateState(typeof(ActionState), mousePosition));
         }
 
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
@@ -99,9 +101,9 @@ namespace RainbowAssets.StateMachine.Editor
             AddElement(newStateView);
         }
 
-        void CreateState(Type type)
+        void CreateState(Type type, Vector2 mousePosition)
         {
-            State newState = stateMachine.CreateState(type);
+            State newState = stateMachine.CreateState(type, mousePosition);
             CreateStateView(newState);
         }
 

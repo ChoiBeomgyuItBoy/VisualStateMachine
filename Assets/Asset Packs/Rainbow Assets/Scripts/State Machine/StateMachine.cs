@@ -11,6 +11,8 @@ namespace RainbowAssets.StateMachine
         [SerializeField] EntryState entryState;
         [SerializeField] AnyState anyState;
         [SerializeField] List<State> states = new();
+        Vector2 entryStateOffset = new(250, 0);
+        Vector2 anyStateOffset = new(250, 50);
         Dictionary<string, State> stateLookup = new();
         State currentState;
 
@@ -26,6 +28,7 @@ namespace RainbowAssets.StateMachine
         {
             if(!stateLookup.ContainsKey(stateID))
             {
+                Debug.LogError($"State with ID {stateID} not found");
                 return null;
             }
 
@@ -54,9 +57,9 @@ namespace RainbowAssets.StateMachine
         }
 
 #if UNITY_EDITOR
-        public State CreateState(Type type)
+        public State CreateState(Type type, Vector2 position)
         {
-            State newState = MakeState(type);
+            State newState = MakeState(type, position);
             Undo.RegisterCreatedObjectUndo(newState, "State Created");
             Undo.RecordObject(this, "State Added");
             AddState(newState);
@@ -71,10 +74,11 @@ namespace RainbowAssets.StateMachine
             Undo.DestroyObjectImmediate(stateToRemove);
         }
 
-        State MakeState(Type type)
+        State MakeState(Type type, Vector2 position)
         {
             State newState = CreateInstance(type) as State;
             newState.name = Guid.NewGuid().ToString();
+            newState.SetPosition(position);
             return newState;
         }
 
@@ -88,16 +92,16 @@ namespace RainbowAssets.StateMachine
         {
             if(entryState == null)
             {
-                entryState = MakeState(typeof(EntryState)) as EntryState;
+                entryState = MakeState(typeof(EntryState), entryStateOffset) as EntryState;
                 AddState(entryState);
             }
 
             if(anyState == null)
             {
-                anyState = MakeState(typeof(AnyState)) as AnyState;
+                anyState = MakeState(typeof(AnyState), anyStateOffset) as AnyState;
                 AddState(anyState);
             }
-            
+
             if(AssetDatabase.GetAssetPath(this) != "")
             {
                 foreach(var state in states)

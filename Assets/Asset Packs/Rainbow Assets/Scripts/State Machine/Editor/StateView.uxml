@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Asset%20Packs/Rainbow%20Assets/Scripts/State%20Machine/Editor/StateMachineEditor.uss?fileID=7433441132597879392&amp;guid=34fde6ddf3e83904480eea0daeba2223&amp;type=3#StateMachineEditor" />
-    <ui:VisualElement name="node-border" style="border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-left-color: rgb(26, 25, 25); border-right-color: rgb(26, 25, 25); border-top-color: rgb(26, 25, 25); border-bottom-color: rgb(26, 25, 25); justify-content: center; align-items: center; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;">
+    <ui:VisualElement name="node-border" style="border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-left-color: rgb(26, 25, 25); border-right-color: rgb(26, 25, 25); border-top-color: rgb(26, 25, 25); border-bottom-color: rgb(26, 25, 25); justify-content: center; align-items: center; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;">
         <ui:VisualElement name="title" style="-unity-text-align: upper-center; color: rgb(241, 228, 228); font-size: 15px;">
             <ui:Label name="title-label" text="Idle State" class="unity-text-element unity-label" />
             <ui:VisualElement name="title-button-container">
