@@ -18,7 +18,7 @@ namespace RainbowAssets.StateMachine.Editor
         {
             this.state = state;
 
-            viewDataKey = state.name;
+            viewDataKey = state.GetUniqueID();
 
             style.left = state.GetPosition().x;
             style.top = state.GetPosition().y;
@@ -57,7 +57,10 @@ namespace RainbowAssets.StateMachine.Editor
 
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
-            evt.menu.AppendAction("Add Transition", a => DragTransitionEdge());
+            if(!Application.isPlaying)
+            {
+                evt.menu.AppendAction("Add Transition", a => DragTransitionEdge());
+            }
         }
 
         public override void CollectElements(HashSet<GraphElement> collectedElementSet, Func<GraphElement, bool> conditionFunc)

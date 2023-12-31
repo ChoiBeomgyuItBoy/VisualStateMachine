@@ -37,15 +37,55 @@ namespace RainbowAssets.StateMachine.Editor
             visualTree.CloneTree(root);
 
             stateMachineView = root.Q<StateMachineView>();
+
+            OnSelectionChange();
         }
 
         void OnSelectionChange()
         {
             StateMachine stateMachine = Selection.activeObject as StateMachine;
 
+            if(Selection.activeGameObject)
+            {
+                StateMachineController controller = Selection.activeGameObject.GetComponent<StateMachineController>();
+
+                if(controller != null)
+                {
+                    stateMachine = controller.GetStateMachine();
+                }
+            }
+
             if(stateMachine != null)
             {
                 stateMachineView.Refresh(stateMachine);
+            } 
+        }
+
+        void OnEnable()
+        {
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        }
+
+        void OnDisable()
+        {
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+        }
+
+        void OnPlayModeStateChanged(PlayModeStateChange change)
+        {
+            if(stateMachineView == null)
+            {
+                return;
+            }
+
+            if(change == PlayModeStateChange.EnteredEditMode)
+            {
+                OnSelectionChange();
+            }
+
+            if(change == PlayModeStateChange.EnteredPlayMode)
+            {
+                OnSelectionChange();
             }
         }
     }

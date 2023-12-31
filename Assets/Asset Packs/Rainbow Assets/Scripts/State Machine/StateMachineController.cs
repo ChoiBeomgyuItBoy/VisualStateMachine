@@ -6,6 +6,11 @@ namespace RainbowAssets.StateMachine
     {
         [SerializeField] StateMachine stateMachine;
 
+        public StateMachine GetStateMachine()
+        {
+            return stateMachine;
+        }
+
         public void SwitchState(string newStateID)
         {
             stateMachine.SwitchState(newStateID);

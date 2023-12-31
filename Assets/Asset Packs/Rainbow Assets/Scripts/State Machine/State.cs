@@ -6,6 +6,7 @@ namespace RainbowAssets.StateMachine
 {
     public abstract class State : ScriptableObject
     {
+        [SerializeField] string uniqueID;
         [SerializeField] string title = "New State";
         [SerializeField] Vector2 position;
         [SerializeField] List<Transition> transitions = new();
@@ -25,6 +26,16 @@ namespace RainbowAssets.StateMachine
         public State Clone()
         {
             return Instantiate(this);
+        }
+
+        public string GetUniqueID()
+        {
+            return uniqueID;
+        }
+
+        public void SetUniqueID(string uniqueID)
+        {
+            this.uniqueID = uniqueID;
         }
 
         public string GetTitle()
@@ -58,7 +69,7 @@ namespace RainbowAssets.StateMachine
         public void AddTransition(string trueStateID)
         {
             Undo.RecordObject(this, "Transition Added");
-            transitions.Add(new Transition(name, trueStateID));
+            transitions.Add(new Transition(uniqueID, trueStateID));
             OnValidate();
             EditorUtility.SetDirty(this);
         }

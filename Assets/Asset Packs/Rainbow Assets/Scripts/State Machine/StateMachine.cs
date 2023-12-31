@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 using UnityEditor;
 using UnityEngine;
 
@@ -38,7 +37,7 @@ namespace RainbowAssets.StateMachine
             foreach(var state in states)
             {
                 State stateClone = state.Clone();
-                clone.stateLookup[state.name] = stateClone;
+                clone.stateLookup[state.GetUniqueID()] = stateClone;
                 clone.states.Add(stateClone);
             }
 
@@ -98,7 +97,8 @@ namespace RainbowAssets.StateMachine
         State MakeState(Type type, Vector2 position)
         {
             State newState = CreateInstance(type) as State;
-            newState.name = Guid.NewGuid().ToString();
+            newState.name = type.Name;
+            newState.SetUniqueID(Guid.NewGuid().ToString());
             newState.SetPosition(position);
             return newState;
         }
@@ -111,22 +111,22 @@ namespace RainbowAssets.StateMachine
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
-            if(entryState == null)
-            {
-                entryState = MakeState(typeof(EntryState), entryStateOffset) as EntryState;
-                entryState.SetTitle("Entry");
-                AddState(entryState);
-            }
-
-            if(anyState == null)
-            {
-                anyState = MakeState(typeof(AnyState), anyStateOffset) as AnyState;
-                anyState.SetTitle("Any");
-                AddState(anyState);
-            }
-
             if(AssetDatabase.GetAssetPath(this) != "")
             {
+                if(entryState == null)
+                {
+                    entryState = MakeState(typeof(EntryState), entryStateOffset) as EntryState;
+                    entryState.SetTitle("Entry");
+                    AddState(entryState);
+                }
+
+                if(anyState == null)
+                {
+                    anyState = MakeState(typeof(AnyState), anyStateOffset) as AnyState;
+                    anyState.SetTitle("Any");
+                    AddState(anyState);
+                }
+                
                 foreach(var state in states)
                 {
                     if(AssetDatabase.GetAssetPath(state) == "")
@@ -158,7 +158,7 @@ namespace RainbowAssets.StateMachine
             {
                 if(state != null)
                 {
-                    stateLookup[state.name] = state;
+                    stateLookup[state.GetUniqueID()] = state;
                 }
             }
         }

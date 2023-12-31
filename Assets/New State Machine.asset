@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7253641819122871311
+--- !u!114 &-3807282720504046822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,11 +10,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
-  m_Name: da90b9c7-5c68-4d99-8564-da742b2347ff
+  m_Name: ActionState
   m_EditorClassIdentifier: 
+  uniqueID: bd57757e-4daf-46a0-879b-c3cab8e94b81
   title: New State
-  position: {x: 258, y: -140}
-  transitions: []
+  position: {x: 280, y: -268}
+  transitions:
+  - rootStateID: bd57757e-4daf-46a0-879b-c3cab8e94b81
+    trueStateID: c979cf47-6f85-486c-bcc8-3f6b8368c52c
+    condition:
+      and: []
+  - rootStateID: bd57757e-4daf-46a0-879b-c3cab8e94b81
+    trueStateID: c1e7235b-7d2c-4440-a856-a6062e617e67
+    condition:
+      and: []
+  actionsData: []
+--- !u!114 &-980413467361566725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
+  m_Name: ActionState
+  m_EditorClassIdentifier: 
+  uniqueID: c1e7235b-7d2c-4440-a856-a6062e617e67
+  title: New State
+  position: {x: 591, y: -183}
+  transitions:
+  - rootStateID: c1e7235b-7d2c-4440-a856-a6062e617e67
+    trueStateID: c979cf47-6f85-486c-bcc8-3f6b8368c52c
+    condition:
+      and: []
   actionsData: []
 --- !u!114 &11400000
 MonoBehaviour:
@@ -28,13 +58,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedaed16a35737344b2389cf12928266, type: 3}
   m_Name: New State Machine
   m_EditorClassIdentifier: 
-  entryState: {fileID: 4077423501440280874}
-  anyState: {fileID: 8887431161101417882}
+  entryState: {fileID: 5953869683664109194}
+  anyState: {fileID: 6256432588279910596}
   states:
-  - {fileID: 4077423501440280874}
-  - {fileID: 8887431161101417882}
-  - {fileID: -7253641819122871311}
---- !u!114 &4077423501440280874
+  - {fileID: 5953869683664109194}
+  - {fileID: 6256432588279910596}
+  - {fileID: 7927514316439454028}
+  - {fileID: -3807282720504046822}
+  - {fileID: -980413467361566725}
+--- !u!114 &5953869683664109194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,16 +76,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 248a74bd55c629a458261d2d8fe3a225, type: 3}
-  m_Name: 12aba46e-331d-4829-9f53-bb15e031e8c5
+  m_Name: EntryState
   m_EditorClassIdentifier: 
+  uniqueID: 26c9a3ac-d37e-41a2-ab7d-24d3ca332718
   title: Entry
   position: {x: 250, y: 0}
   transitions:
-  - rootStateID: 12aba46e-331d-4829-9f53-bb15e031e8c5
-    trueStateID: da90b9c7-5c68-4d99-8564-da742b2347ff
+  - rootStateID: 26c9a3ac-d37e-41a2-ab7d-24d3ca332718
+    trueStateID: c979cf47-6f85-486c-bcc8-3f6b8368c52c
     condition:
       and: []
---- !u!114 &8887431161101417882
+--- !u!114 &6256432588279910596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,8 +96,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0ddedce7bbba8c408e2c6e1570cd3d5, type: 3}
-  m_Name: 755da55c-dd87-4416-afd2-7c91ca36c858
+  m_Name: AnyState
   m_EditorClassIdentifier: 
+  uniqueID: 14a27d7e-4606-40cd-8d86-018c4dab32bb
   title: Any
-  position: {x: 247, y: 44}
+  position: {x: 250, y: 50}
   transitions: []
+--- !u!114 &7927514316439454028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
+  m_Name: ActionState
+  m_EditorClassIdentifier: 
+  uniqueID: c979cf47-6f85-486c-bcc8-3f6b8368c52c
+  title: New State
+  position: {x: 258, y: -111}
+  transitions:
+  - rootStateID: c979cf47-6f85-486c-bcc8-3f6b8368c52c
+    trueStateID: bd57757e-4daf-46a0-879b-c3cab8e94b81
+    condition:
+      and: []
+  - rootStateID: c979cf47-6f85-486c-bcc8-3f6b8368c52c
+    trueStateID: c1e7235b-7d2c-4440-a856-a6062e617e67
+    condition:
+      and: []
+  actionsData: []

@@ -55,9 +55,12 @@ namespace RainbowAssets.StateMachine.Editor
 
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
-            base.BuildContextualMenu(evt);
-            Vector2 mousePosition = viewTransform.matrix.inverse.MultiplyPoint(evt.localMousePosition);
-            evt.menu.AppendAction($"Create State", a => CreateState(typeof(ActionState), mousePosition));
+            if(!Application.isPlaying)
+            {
+                base.BuildContextualMenu(evt);
+                Vector2 mousePosition = viewTransform.matrix.inverse.MultiplyPoint(evt.localMousePosition);
+                evt.menu.AppendAction($"Create State", a => CreateState(typeof(ActionState), mousePosition));
+            }
         }
 
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
