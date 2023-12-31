@@ -1,12 +1,8 @@
-GridBackground { 
+GridBackground {
     --grid-background-color: rgb(40, 40, 40);
-    --line-color: rgba(0,0,0, 0.2);
-    --thick-line-color: rgba(0,0,0, 0.5);
+    --line-color: rgba(0, 0, 0, 0.2);
+    --thick-line-color: rgba(0, 0, 0, 0.5);
     --spacing: 15;
-}
- 
-.actionState {
-    background-color: rgb(79, 75, 75);
 }
 
 Port {
@@ -18,6 +14,18 @@ Port {
     scale: 1 2;
 }
 
-Port>Label{
-	display:none;
+Port > Label {
+    display: none;
+}
+
+.entryState {
+    background-color: rgb(17, 107, 46);
+    width: 180px;
+    height: 40px;
+}
+
+.actionState {
+    background-color: rgb(79, 75, 75);
+    width: 210px;
+    height: 50px;
 }

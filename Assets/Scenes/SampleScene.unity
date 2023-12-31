@@ -319,8 +319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1142006850}
   - component: {fileID: 1142006849}
-  - component: {fileID: 1142006848}
-  - component: {fileID: 1142006847}
+  - component: {fileID: 1142006851}
   m_Layer: 0
   m_Name: State Machine Controller
   m_TagString: Untagged
@@ -328,30 +327,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1142006847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1142006846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c248dfb33ac1204bbf7903db7ca8b33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1142006848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1142006846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce89614196558b48878bf5c98ef9663, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1142006849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df149d1f6e93d364db79a2401f3ae1c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateMachine: {fileID: 11400000, guid: 0cad3a44c0b021e45bb55d46ea86a70e, type: 2}
+  stateMachine: {fileID: 11400000, guid: a248bd01df38d864797959e1bb39f38c, type: 2}
 --- !u!4 &1142006850
 Transform:
   m_ObjectHideFlags: 0
@@ -380,6 +355,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1142006851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142006846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce68566521d02b40ae1219837c021c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

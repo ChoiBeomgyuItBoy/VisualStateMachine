@@ -57,10 +57,9 @@ namespace RainbowAssets.StateMachine
         }
 #endif
 
-        public void Tick()
+        public virtual void Tick()
         {
             CheckTransitions();
-            OnTick();
         }
 
         void Awake()
@@ -105,7 +104,5 @@ namespace RainbowAssets.StateMachine
                 }
             }
         }
-
-        protected abstract void OnTick();
     }
 }

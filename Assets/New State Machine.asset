@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3797657414633315303
+--- !u!114 &-5332870931115465416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,20 +10,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
-  m_Name: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
+  m_Name: 60e47e13-1f85-43e0-bef6-354b95ce3912
+  m_EditorClassIdentifier: 
+  title: Print Hello World
+  position: {x: 174, y: 754}
+  transitions:
+  - rootStateID: 60e47e13-1f85-43e0-bef6-354b95ce3912
+    trueStateID: 3ce868ec-828c-4126-8989-01474c2bb84a
+    condition:
+      and:
+      - or:
+        - predicate: Pressed Input
+          parameters:
+          - Space
+          negate: 0
+  actionsData:
+  - actionID: Print Message
+    parameters:
+    - Hello
+    - World
+--- !u!114 &-4442028938592996253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 248a74bd55c629a458261d2d8fe3a225, type: 3}
+  m_Name: 6a4a1f78-1a12-4e91-95c8-46590c7fc345
   m_EditorClassIdentifier: 
   title: New State
-  position: {x: 727, y: 639}
+  position: {x: 249, y: 883}
   transitions:
-  - rootStateID: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
-    trueStateID: 23651de9-6b3f-4833-936f-730b80e7cfda
+  - rootStateID: 6a4a1f78-1a12-4e91-95c8-46590c7fc345
+    trueStateID: 60e47e13-1f85-43e0-bef6-354b95ce3912
     condition:
       and: []
-  - rootStateID: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
-    trueStateID: 16dc6ec9-9445-4543-ad94-f91d64187f82
-    condition:
-      and: []
-  actionsData: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36,12 +60,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedaed16a35737344b2389cf12928266, type: 3}
   m_Name: New State Machine
   m_EditorClassIdentifier: 
-  entryStateID: 
+  entryState: {fileID: -4442028938592996253}
   states:
-  - {fileID: 3934288551766020266}
-  - {fileID: 1260634099074514158}
-  - {fileID: -3797657414633315303}
---- !u!114 &1260634099074514158
+  - {fileID: -5332870931115465416}
+  - {fileID: 4520142718834226004}
+  - {fileID: -4442028938592996253}
+--- !u!114 &4520142718834226004
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,41 +75,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
-  m_Name: 16dc6ec9-9445-4543-ad94-f91d64187f82
+  m_Name: 3ce868ec-828c-4126-8989-01474c2bb84a
   m_EditorClassIdentifier: 
-  title: New State
-  position: {x: 421, y: 687}
+  title: Print Loco
+  position: {x: 242, y: 628}
   transitions:
-  - rootStateID: 16dc6ec9-9445-4543-ad94-f91d64187f82
-    trueStateID: 23651de9-6b3f-4833-936f-730b80e7cfda
+  - rootStateID: 3ce868ec-828c-4126-8989-01474c2bb84a
+    trueStateID: 60e47e13-1f85-43e0-bef6-354b95ce3912
     condition:
-      and: []
-  - rootStateID: 16dc6ec9-9445-4543-ad94-f91d64187f82
-    trueStateID: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
-    condition:
-      and: []
-  actionsData: []
---- !u!114 &3934288551766020266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c41c226ac830cc4badff91167841243, type: 3}
-  m_Name: 23651de9-6b3f-4833-936f-730b80e7cfda
-  m_EditorClassIdentifier: 
-  title: New State
-  position: {x: 537, y: 502}
-  transitions:
-  - rootStateID: 23651de9-6b3f-4833-936f-730b80e7cfda
-    trueStateID: 4d3fa774-20e0-4ee1-a453-85cdb19f8242
-    condition:
-      and: []
-  - rootStateID: 23651de9-6b3f-4833-936f-730b80e7cfda
-    trueStateID: 16dc6ec9-9445-4543-ad94-f91d64187f82
-    condition:
-      and: []
-  actionsData: []
+      and:
+      - or:
+        - predicate: Pressed Input
+          parameters:
+          - Escape
+          negate: 0
+  actionsData:
+  - actionID: Print Message
+    parameters:
+    - Loco!

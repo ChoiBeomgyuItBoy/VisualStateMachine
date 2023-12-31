@@ -25,6 +25,8 @@ namespace RainbowAssets.StateMachine.Editor
 
             CreatePorts();
             SetTitle();
+            SetStyle();
+            SetCapabilites();
         }
 
         public State GetState()
@@ -46,7 +48,11 @@ namespace RainbowAssets.StateMachine.Editor
         public override void OnSelected()
         {
             base.OnSelected();
-            Selection.activeObject = state;
+
+            if(state is ActionState)
+            {
+                Selection.activeObject = state;
+            }
         }
 
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
@@ -76,6 +82,11 @@ namespace RainbowAssets.StateMachine.Editor
                 inputPort = CreatePort(Direction.Input, Port.Capacity.Multi);
                 outputPort = CreatePort(Direction.Output, Port.Capacity.Multi);
             }
+
+            if(state is EntryState)
+            {
+                outputPort = CreatePort(Direction.Output, Port.Capacity.Single);
+            }
         }
 
         Port CreatePort(Direction direction, Port.Capacity capacity)
@@ -91,6 +102,11 @@ namespace RainbowAssets.StateMachine.Editor
             {
                 BindTitle();
             }
+
+            if(state is EntryState)
+            {
+                title = "Entry";
+            }
         }
 
         void BindTitle()
@@ -98,6 +114,29 @@ namespace RainbowAssets.StateMachine.Editor
             Label titleLabel = this.Q<Label>("title-label");
             titleLabel.bindingPath = "title";
             titleLabel.Bind(new SerializedObject(state));
+        }
+
+        void SetStyle()
+        {
+            VisualElement root = this.Q<VisualElement>("node-border");
+
+            if(state is ActionState)
+            {
+                root.AddToClassList("actionState");
+            }
+
+            if(state is EntryState)
+            {
+                root.AddToClassList("entryState");
+            }
+        }
+
+        void SetCapabilites()
+        {
+            if(state is EntryState)
+            {
+                capabilities -= Capabilities.Deletable;
+            }
         }
 
         class DragEvent : MouseDownEvent

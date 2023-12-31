@@ -14,6 +14,12 @@ namespace RainbowAssets.StateMachine
             public string[] parameters;
         }
 
+        public override void Tick()
+        {
+            base.Tick();
+            DoActions();
+        }
+
         void DoActions()
         {
             foreach(var action in controller.GetComponents<IAction>())
@@ -23,11 +29,6 @@ namespace RainbowAssets.StateMachine
                     action.DoAction(actionData.actionID, actionData.parameters);
                 }
             }
-        }
-
-        protected override void OnTick()
-        {
-            DoActions();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace RainbowAssets.StateMachine
     [CreateAssetMenu(menuName = "New State Machine")]
     public class StateMachine : ScriptableObject, ISerializationCallbackReceiver
     {
-        [SerializeField] string entryStateID;
+        [SerializeField] EntryState entryState;
         [SerializeField] List<State> states = new();
         Dictionary<string, State> stateLookup = new();
         State currentState;
@@ -38,7 +38,7 @@ namespace RainbowAssets.StateMachine
 
         public void Enter()
         {
-            SwitchState(entryStateID);
+            SwitchState(entryState.GetEntryStateID());
         }
 
         public void Tick()
@@ -54,15 +54,10 @@ namespace RainbowAssets.StateMachine
 #if UNITY_EDITOR
         public State CreateState(Type type)
         {
-            State newState = CreateInstance(type) as State;
-            newState.name = Guid.NewGuid().ToString();
-
+            State newState = MakeState(type);
             Undo.RegisterCreatedObjectUndo(newState, "State Created");
             Undo.RecordObject(this, "State Added");
-
-            states.Add(newState);
-            OnValidate();
-            
+            AddState(newState);
             return newState;
         }
 
@@ -74,10 +69,29 @@ namespace RainbowAssets.StateMachine
             Undo.DestroyObjectImmediate(stateToRemove);
         }
 
+        State MakeState(Type type)
+        {
+            State newState = CreateInstance(type) as State;
+            newState.name = Guid.NewGuid().ToString();
+            return newState;
+        }
+
+        void AddState(State newState)
+        {
+            states.Add(newState);
+            OnValidate();
+        }
+
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
             if(AssetDatabase.GetAssetPath(this) != "")
             {
+                if(entryState == null)
+                {
+                    entryState = MakeState(typeof(EntryState)) as EntryState;
+                    AddState(entryState);
+                }
+                
                 foreach(var state in states)
                 {
                     if(AssetDatabase.GetAssetPath(state) == "")

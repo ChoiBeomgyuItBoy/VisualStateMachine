@@ -131,11 +131,17 @@ namespace RainbowAssets.StateMachine.Editor
         {
             Color color = defaultColor;
 
+            if(output != null)
+            {
+                color = output.portColor;
+            }
+
             if(selected)
             {
                 color = selectedColor;
             }
-            else if(isGhostEdge)
+            
+            if(isGhostEdge)
             {
                 color = ghostColor;
             }
