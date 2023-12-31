@@ -53,6 +53,19 @@ namespace RainbowAssets.StateMachine.Editor
             }
         }
 
+        public void UpdateStates()
+        {
+            foreach(var node in nodes)
+            {
+                StateView stateView = node as StateView;
+
+                if(stateView != null)
+                {
+                    stateView.UpdateState();
+                }
+            }
+        }
+
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
             if(!Application.isPlaying)

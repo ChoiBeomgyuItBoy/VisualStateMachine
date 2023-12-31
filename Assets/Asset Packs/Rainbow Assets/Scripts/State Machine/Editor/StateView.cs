@@ -13,6 +13,8 @@ namespace RainbowAssets.StateMachine.Editor
         State state;
         Port inputPort;
         Port outputPort;
+        VisualElement borderContainer;
+        VisualElement updateContainer;
 
         public StateView(State state) : base(StateMachineEditor.path + "StateView.uxml")
         {
@@ -22,6 +24,9 @@ namespace RainbowAssets.StateMachine.Editor
 
             style.left = state.GetPosition().x;
             style.top = state.GetPosition().y;
+
+            borderContainer = this.Q<VisualElement>("node-border");
+            updateContainer = this.Q<VisualElement>("state-update");
 
             CreatePorts();
             SetTitle();
@@ -37,6 +42,21 @@ namespace RainbowAssets.StateMachine.Editor
         public TransitionEdge ConnectTo(StateView stateView)
         {
             return outputPort.ConnectTo<TransitionEdge>(stateView.inputPort);
+        }
+
+        public void UpdateState()
+        {
+            if(Application.isPlaying)
+            {
+                if(state.Started())
+                {
+                    updateContainer.AddToClassList("runningState");
+                }
+                else
+                {   
+                    updateContainer.RemoveFromClassList("runningState");
+                }
+            }
         }
 
         public override void SetPosition(Rect newPos)
@@ -131,21 +151,19 @@ namespace RainbowAssets.StateMachine.Editor
 
         void SetStyle()
         {
-            VisualElement root = this.Q<VisualElement>("node-border");
-
             if(state is ActionState)
             {
-                root.AddToClassList("actionState");
+                borderContainer.AddToClassList("actionState");
             }
 
             if(state is EntryState)
             {
-                root.AddToClassList("entryState");
+                borderContainer.AddToClassList("entryState");
             }
 
             if(state is AnyState)
             {
-                root.AddToClassList("anyState");
+                borderContainer.AddToClassList("anyState");
             }
         }
 

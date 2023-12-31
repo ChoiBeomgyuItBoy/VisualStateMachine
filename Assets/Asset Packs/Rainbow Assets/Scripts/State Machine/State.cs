@@ -11,6 +11,7 @@ namespace RainbowAssets.StateMachine
         [SerializeField] Vector2 position;
         [SerializeField] List<Transition> transitions = new();
         Dictionary<string, Transition> transitionLookup = new();
+        bool started = false;
         protected StateMachineController controller;
 
         public void Bind(StateMachineController controller)
@@ -26,6 +27,11 @@ namespace RainbowAssets.StateMachine
         public State Clone()
         {
             return Instantiate(this);
+        }
+
+        public bool Started()
+        {
+            return started;
         }
 
         public string GetUniqueID()
@@ -83,9 +89,19 @@ namespace RainbowAssets.StateMachine
         }
 #endif
 
+        public virtual void Enter()
+        {
+            started = true;
+        }
+
         public virtual void Tick()
         {
             CheckTransitions();
+        }
+
+        public virtual void Exit()
+        {
+            started = false;
         }
 
         void Awake()

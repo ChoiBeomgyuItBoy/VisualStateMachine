@@ -73,19 +73,25 @@ namespace RainbowAssets.StateMachine.Editor
 
         void OnPlayModeStateChanged(PlayModeStateChange change)
         {
-            if(stateMachineView == null)
+            if(stateMachineView != null)
             {
-                return;
-            }
+                if(change == PlayModeStateChange.EnteredEditMode)
+                {
+                    OnSelectionChange();
+                }
 
-            if(change == PlayModeStateChange.EnteredEditMode)
-            {
-                OnSelectionChange();
+                if(change == PlayModeStateChange.EnteredPlayMode)
+                {
+                    OnSelectionChange();
+                }
             }
+        }
 
-            if(change == PlayModeStateChange.EnteredPlayMode)
+        void OnInspectorUpdate()
+        {
+            if(stateMachineView != null)
             {
-                OnSelectionChange();
+                stateMachineView.UpdateStates();
             }
         }
     }

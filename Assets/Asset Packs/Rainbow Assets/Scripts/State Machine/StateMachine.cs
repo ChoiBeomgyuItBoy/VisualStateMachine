@@ -73,7 +73,9 @@ namespace RainbowAssets.StateMachine
 
         public void SwitchState(string newStateID)
         {
+            currentState?.Exit();
             currentState = GetState(newStateID);
+            currentState.Enter();
         }
 
 #if UNITY_EDITOR
