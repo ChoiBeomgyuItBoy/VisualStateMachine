@@ -29,3 +29,9 @@ Port > Label {
     width: 210px;
     height: 50px;
 }
+
+.anyState {
+    background-color: rgb(82, 144, 129);
+    width: 180px;
+    height: 40px;
+}

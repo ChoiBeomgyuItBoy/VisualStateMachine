@@ -9,6 +9,7 @@ namespace RainbowAssets.StateMachine
     public class StateMachine : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] EntryState entryState;
+        [SerializeField] AnyState anyState;
         [SerializeField] List<State> states = new();
         Dictionary<string, State> stateLookup = new();
         State currentState;
@@ -44,6 +45,7 @@ namespace RainbowAssets.StateMachine
         public void Tick()
         {
             currentState.Tick();
+            anyState.Tick();
         }
 
         public void SwitchState(string newStateID)
@@ -84,14 +86,20 @@ namespace RainbowAssets.StateMachine
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
+            if(entryState == null)
+            {
+                entryState = MakeState(typeof(EntryState)) as EntryState;
+                AddState(entryState);
+            }
+
+            if(anyState == null)
+            {
+                anyState = MakeState(typeof(AnyState)) as AnyState;
+                AddState(anyState);
+            }
+            
             if(AssetDatabase.GetAssetPath(this) != "")
             {
-                if(entryState == null)
-                {
-                    entryState = MakeState(typeof(EntryState)) as EntryState;
-                    AddState(entryState);
-                }
-                
                 foreach(var state in states)
                 {
                     if(AssetDatabase.GetAssetPath(state) == "")

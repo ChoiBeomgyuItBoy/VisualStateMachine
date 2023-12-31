@@ -49,7 +49,7 @@ namespace RainbowAssets.StateMachine.Editor
         {
             base.OnSelected();
 
-            if(state is ActionState)
+            if(state is not EntryState)
             {
                 Selection.activeObject = state;
             }
@@ -64,14 +64,20 @@ namespace RainbowAssets.StateMachine.Editor
         {
             base.CollectElements(collectedElementSet, conditionFunc);
 
-            foreach(var connection in inputPort.connections)
+            if(inputPort != null)
             {
-                collectedElementSet.Add(connection);
+                foreach(var connection in inputPort.connections)
+                {
+                    collectedElementSet.Add(connection);
+                }
             }
-            
-            foreach(var connection in outputPort.connections)
+
+            if(outputPort != null)
             {
-                collectedElementSet.Add(connection);
+                foreach(var connection in outputPort.connections)
+                {
+                    collectedElementSet.Add(connection);
+                }
             }
         }
 
@@ -86,6 +92,11 @@ namespace RainbowAssets.StateMachine.Editor
             if(state is EntryState)
             {
                 outputPort = CreatePort(Direction.Output, Port.Capacity.Single);
+            }
+
+            if(state is AnyState)
+            {
+                outputPort = CreatePort(Direction.Output, Port.Capacity.Multi);
             }
         }
 
@@ -106,6 +117,11 @@ namespace RainbowAssets.StateMachine.Editor
             if(state is EntryState)
             {
                 title = "Entry";
+            }
+
+            if(state is AnyState)
+            {
+                title = "Any";
             }
         }
 
@@ -129,11 +145,16 @@ namespace RainbowAssets.StateMachine.Editor
             {
                 root.AddToClassList("entryState");
             }
+
+            if(state is AnyState)
+            {
+                root.AddToClassList("anyState");
+            }
         }
 
         void SetCapabilites()
         {
-            if(state is EntryState)
+            if(state is EntryState || state is AnyState)
             {
                 capabilities -= Capabilities.Deletable;
             }
