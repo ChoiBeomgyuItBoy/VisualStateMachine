@@ -22,6 +22,21 @@ namespace RainbowAssets.StateMachine
             }
         }
 
+        public State Clone()
+        {
+            return Instantiate(this);
+        }
+
+        public string GetTitle()
+        {
+            return title;
+        }
+
+        public void SetTitle(string title)
+        {
+            this.title = title;
+        }
+
         public Vector2 GetPosition()
         {
             return position;

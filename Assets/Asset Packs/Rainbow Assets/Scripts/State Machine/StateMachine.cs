@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using UnityEditor;
 using UnityEngine;
 
@@ -22,6 +23,26 @@ namespace RainbowAssets.StateMachine
             {
                 state.Bind(controller);
             }
+        }
+
+        public StateMachine Clone()
+        {
+            StateMachine clone = Instantiate(this);
+
+            clone.states.Clear();
+            clone.stateLookup.Clear();
+
+            clone.entryState = entryState.Clone() as EntryState;
+            clone.anyState = anyState.Clone() as AnyState;
+
+            foreach(var state in states)
+            {
+                State stateClone = state.Clone();
+                clone.stateLookup[state.name] = stateClone;
+                clone.states.Add(stateClone);
+            }
+
+            return clone;
         }
 
         public State GetState(string stateID)
@@ -93,12 +114,14 @@ namespace RainbowAssets.StateMachine
             if(entryState == null)
             {
                 entryState = MakeState(typeof(EntryState), entryStateOffset) as EntryState;
+                entryState.SetTitle("Entry");
                 AddState(entryState);
             }
 
             if(anyState == null)
             {
                 anyState = MakeState(typeof(AnyState), anyStateOffset) as AnyState;
+                anyState.SetTitle("Any");
                 AddState(anyState);
             }
 

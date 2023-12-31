@@ -113,15 +113,9 @@ namespace RainbowAssets.StateMachine.Editor
             {
                 BindTitle();
             }
-
-            if(state is EntryState)
+            else
             {
-                title = "Entry";
-            }
-
-            if(state is AnyState)
-            {
-                title = "Any";
+                title = state.GetTitle();
             }
         }
 

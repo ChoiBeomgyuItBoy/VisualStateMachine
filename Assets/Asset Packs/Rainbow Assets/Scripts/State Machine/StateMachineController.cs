@@ -11,6 +11,11 @@ namespace RainbowAssets.StateMachine
             stateMachine.SwitchState(newStateID);
         }
 
+        void Awake()
+        {
+            stateMachine = stateMachine.Clone();
+        }
+
         void Start()
         {
             stateMachine.Bind(this);
