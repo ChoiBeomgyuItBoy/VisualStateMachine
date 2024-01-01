@@ -115,6 +115,14 @@ namespace RainbowAssets.StateMachine
         {
             if(AssetDatabase.GetAssetPath(this) != "")
             {
+                foreach(var state in states)
+                {
+                    if(AssetDatabase.GetAssetPath(state) == "")
+                    {
+                        AssetDatabase.AddObjectToAsset(state, this);
+                    }
+                }
+
                 if(entryState == null)
                 {
                     entryState = MakeState(typeof(EntryState), entryStateOffset) as EntryState;
@@ -127,14 +135,6 @@ namespace RainbowAssets.StateMachine
                     anyState = MakeState(typeof(AnyState), anyStateOffset) as AnyState;
                     anyState.SetTitle("Any");
                     AddState(anyState);
-                }
-                
-                foreach(var state in states)
-                {
-                    if(AssetDatabase.GetAssetPath(state) == "")
-                    {
-                        AssetDatabase.AddObjectToAsset(state, this);
-                    }
                 }
             }
         }

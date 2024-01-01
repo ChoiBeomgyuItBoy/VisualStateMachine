@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueID: bd57757e-4daf-46a0-879b-c3cab8e94b81
   title: New State
-  position: {x: 280, y: -268}
+  position: {x: 314, y: -294}
   transitions:
   - rootStateID: bd57757e-4daf-46a0-879b-c3cab8e94b81
     trueStateID: c979cf47-6f85-486c-bcc8-3f6b8368c52c
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueID: 26c9a3ac-d37e-41a2-ab7d-24d3ca332718
   title: Entry
-  position: {x: 250, y: 0}
+  position: {x: 266, y: 12}
   transitions:
   - rootStateID: 26c9a3ac-d37e-41a2-ab7d-24d3ca332718
     trueStateID: c979cf47-6f85-486c-bcc8-3f6b8368c52c
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueID: 14a27d7e-4606-40cd-8d86-018c4dab32bb
   title: Any
-  position: {x: 250, y: 50}
+  position: {x: 266, y: 56.440033}
   transitions: []
 --- !u!114 &7927514316439454028
 MonoBehaviour:

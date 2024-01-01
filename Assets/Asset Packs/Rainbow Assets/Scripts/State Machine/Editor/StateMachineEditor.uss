@@ -35,3 +35,23 @@ Port > Label {
     width: 180px;
     height: 40px;
 }
+
+.runningState {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-left-color: rgb(170, 183, 35);
+    border-right-color: rgb(170, 183, 35);
+    border-top-color: rgb(170, 183, 35);
+    border-bottom-color: rgb(170, 183, 35);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
