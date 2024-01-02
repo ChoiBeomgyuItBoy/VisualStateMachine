@@ -55,7 +55,7 @@ namespace RainbowAssets.Utils
 
                     if(result == null)
                     {
-                        return false;
+                        continue;
                     }
 
                     if(result == negate)

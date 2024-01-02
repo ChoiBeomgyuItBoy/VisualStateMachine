@@ -5,7 +5,9 @@ namespace RainbowAssets.StateMachine
 {
     public class ActionState : State
     {
-        [SerializeField] ActionData[] actionsData;
+        [SerializeField] ActionData[] onEnterActions;
+        [SerializeField] ActionData[] onTickActions;
+        [SerializeField] ActionData[] onExitActions;
 
         [System.Serializable]
         class ActionData
@@ -14,17 +16,29 @@ namespace RainbowAssets.StateMachine
             public string[] parameters;
         }
 
+        public override void Enter()
+        {
+            base.Enter();
+            DoActions(onEnterActions);
+        }
+
         public override void Tick()
         {
             base.Tick();
-            DoActions();
+            DoActions(onTickActions);
         }
 
-        void DoActions()
+        public override void Exit()
+        {
+            base.Exit();
+            DoActions(onExitActions);
+        }
+
+        void DoActions(ActionData[] actions)
         {
             foreach(var action in controller.GetComponents<IAction>())
             {
-                foreach(var actionData in actionsData)
+                foreach(var actionData in actions)
                 {
                     action.DoAction(actionData.actionID, actionData.parameters);
                 }

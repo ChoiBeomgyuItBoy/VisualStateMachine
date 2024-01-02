@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RainbowAssets.StateMachine
 {
-    [CreateAssetMenu(menuName = "New State Machine")]
+    [CreateAssetMenu(menuName = "Rainbow Assets/New State Machine")]
     public class StateMachine : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] EntryState entryState;

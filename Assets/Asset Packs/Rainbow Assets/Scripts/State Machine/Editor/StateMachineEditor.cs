@@ -9,7 +9,7 @@ namespace RainbowAssets.StateMachine.Editor
         public const string path = "Assets/Asset Packs/Rainbow Assets/Scripts/State Machine/Editor/";
         StateMachineView stateMachineView;
 
-        [MenuItem("Window/State Machine Editor")]
+        [MenuItem("Rainbow Assets/State Machine Editor")]
         public static void ShowWindow()
         {
             GetWindow(typeof(StateMachineEditor), false, "State Machine Editor");
