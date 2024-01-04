@@ -31,15 +31,13 @@ namespace RainbowAssets.StateMachine
             clone.states.Clear();
             clone.stateLookup.Clear();
 
-            clone.entryState = entryState.Clone() as EntryState;
-            clone.anyState = anyState.Clone() as AnyState;
-
             foreach(var state in states)
             {
-                State stateClone = state.Clone();
-                clone.stateLookup[state.GetUniqueID()] = stateClone;
-                clone.states.Add(stateClone);
+                clone.AddState(state.Clone());
             }
+
+            clone.entryState = clone.GetState(entryState.GetUniqueID()) as EntryState;
+            clone.anyState = clone.GetState(anyState.GetUniqueID()) as AnyState;
 
             return clone;
         }
