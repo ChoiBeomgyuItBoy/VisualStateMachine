@@ -102,7 +102,31 @@ namespace RainbowAssets.StateMachine
             newState.SetPosition(position);
             return newState;
         }
+#endif
 
+        void OnEnable()
+        {
+            currentState = null;
+        }
+
+        void Awake()
+        {
+            OnValidate();
+        }
+
+        void OnValidate()
+        {
+            stateLookup.Clear();
+
+            foreach(var state in states)
+            {
+                if(state != null)
+                {
+                    stateLookup[state.GetUniqueID()] = state;
+                }
+            }
+        }
+        
         void AddState(State newState)
         {
             states.Add(newState);
@@ -111,6 +135,7 @@ namespace RainbowAssets.StateMachine
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
+#if UNITY_EDITOR
             if(AssetDatabase.GetAssetPath(this) != "")
             {
                 foreach(var state in states)
@@ -135,32 +160,9 @@ namespace RainbowAssets.StateMachine
                     AddState(anyState);
                 }
             }
+#endif
         }
 
         void ISerializationCallbackReceiver.OnAfterDeserialize() { }  
-#endif
-        
-        void OnEnable()
-        {
-            currentState = null;
-        }
-
-        void Awake()
-        {
-            OnValidate();
-        }
-
-        void OnValidate()
-        {
-            stateLookup.Clear();
-
-            foreach(var state in states)
-            {
-                if(state != null)
-                {
-                    stateLookup[state.GetUniqueID()] = state;
-                }
-            }
-        }
     }
 }
